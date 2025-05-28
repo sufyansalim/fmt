@@ -10,6 +10,11 @@
 FMT_BEGIN_NAMESPACE
 namespace internal {
 
+// ─── Patch: disable C++20 char8_t overloads ─────────────────────────────
+#ifndef FMT_USE_CHAR8_T
+#  define FMT_USE_CHAR8_T 0
+#endif
+
 template <typename T>
 int format_float(char* buf, std::size_t size, const char* format, int precision,
                  T value) {
