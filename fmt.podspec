@@ -3,16 +3,16 @@ Pod::Spec.new do |spec|
   spec.version      = '6.2.2'
   spec.summary      = '{fmt} is a safe and fast formatting library for C++'
   spec.homepage     = 'https://github.com/sufyansalim/fmt'
-  spec.license      = { :type => 'MIT' }
+  spec.license      = { type: 'MIT' }
   spec.authors      = { 'Victor Zverovich' => 'zverovich@google.com' }
 
-  # make sure CocoaPods reads *this* spec
-  spec.source       = {
-    :git => 'https://github.com/sufyansalim/fmt.git',
-    :branch => 'disable-char8t-overloads'
+  # ← point at the 6.2.2 tag, not the branch
+  spec.source = {
+    git: 'https://github.com/sufyansalim/fmt.git',
+    tag: '6.2.2'
   }
 
-  spec.platforms    = { :ios => '10.0', :osx => '10.14' }
+  spec.platforms    = { ios: '10.0', osx: '10.14' }
 
   # include everything except the offending format.cc
   spec.source_files  = ['src/*.cc', 'include/**/*.{hpp,h}']
