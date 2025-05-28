@@ -1,5 +1,3 @@
-# fmt.podspec — for fmt 6.2.1 with char8_t overloads disabled
-
 Pod::Spec.new do |spec|
   spec.name         = 'fmt'
   spec.version      = '6.2.1'
@@ -8,32 +6,22 @@ Pod::Spec.new do |spec|
   spec.license      = { :type => 'MIT' }
   spec.authors      = { 'Victor Zverovich' => 'zverovich@google.com' }
 
-  # point at *your* fork & tag
+  # make sure CocoaPods reads *this* spec
   spec.source       = {
     :git => 'https://github.com/sufyansalim/fmt.git',
-    :tag => '6.2.1'
+    :branch => 'disable-char8t-overloads'
   }
 
   spec.platforms    = { :ios => '10.0', :osx => '10.14' }
 
-  # ----------------------------------------------------------------------------
-  # Include everything under src/ and include/, then strip out format.cc
-  # ----------------------------------------------------------------------------
-  spec.source_files = [
-    'src/*.cc',
-    'include/**/*.{hpp,h}'
-  ]
-  spec.exclude_files = [
-    'src/os.cc',      # upstream excludes this anyway
-    'src/format.cc'   # we drop the one that trips char8_t
-  ]
+  # include everything except the offending format.cc
+  spec.source_files  = ['src/*.cc', 'include/**/*.{hpp,h}']
+  spec.exclude_files = ['src/format.cc', 'src/os.cc']
 
   spec.public_header_files = 'include/**/*.{hpp,h}'
-  spec.preserve_paths      = 'include'
+  spec.preserve_paths       = 'include'
 
-  # ----------------------------------------------------------------------------
-  # Build flags: C++17 + libc++, and disable fmt's char8_t overloads
-  # ----------------------------------------------------------------------------
+  # build under C++17 + libc++ and disable the char8_t overloads
   spec.pod_target_xcconfig = {
     'CLANG_CXX_LANGUAGE_STANDARD' => 'gnu++17',
     'CLANG_CXX_LIBRARY'            => 'libc++',
