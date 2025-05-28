@@ -23,6 +23,10 @@ Pod::Spec.new do |spec|
     'src/*.cc',
     'include/**/*.{hpp,h}'
   ]
+  spec.exclude_files = [
+    'src/os.cc',      # upstream excludes this anyway
+    'src/format.cc'   # we drop the one that trips char8_t
+  ]
 
   spec.public_header_files = 'include/**/*.{hpp,h}'
   spec.preserve_paths      = 'include'
