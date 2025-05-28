@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = 'fmt'
-  spec.version      = '6.2.1-patched'
+  spec.version      = '6.2.2'
   spec.summary      = '{fmt} is a safe and fast formatting library for C++'
   spec.homepage     = 'https://github.com/sufyansalim/fmt'
   spec.license      = { :type => 'MIT' }
